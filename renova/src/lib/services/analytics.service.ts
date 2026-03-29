@@ -6,7 +6,7 @@ export async function logEvent(
   listingId?: string,
   userId?: string,
   sessionId?: string,
-  meta?: any
+  meta?: Record<string, unknown>
 ) {
   const { error } = await supabaseAdmin
     .from('analytics_events')

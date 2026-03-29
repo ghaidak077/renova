@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           supabaseResponse = NextResponse.next({
             request,
           });
@@ -48,7 +48,7 @@ export async function middleware(request: NextRequest) {
     const slug = segments[0];
 
     try {
-      const { data: store, error } = await supabase
+      const { data: store, error: _error } = await supabase
         .from('stores')
         .select('subscription_ends_at, status')
         .eq('slug', slug)

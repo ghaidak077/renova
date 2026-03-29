@@ -1,4 +1,4 @@
-import { Inter, Noto_Kufi_Arabic } from 'next/font/google';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'المتجر معلق | Renova',
@@ -50,12 +50,12 @@ export default function SuspendedStore() {
             تواصل عبر واتساب
           </a>
 
-          <a
+          <Link
             href="/"
             className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 ease-in-out"
           >
             العودة للصفحة الرئيسية
-          </a>
+          </Link>
         </div>
       </div>
 

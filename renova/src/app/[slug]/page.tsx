@@ -54,7 +54,7 @@ export default async function StorefrontPage({ params }: { params: Promise<{ slu
       <div>
         <h2 className="text-2xl font-semibold mb-6">الإعلانات ({listings?.length || 0})</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {listings?.map((listing: any) => (
+          {listings?.map((listing: Record<string, unknown>) => (
             <Link key={listing.id} href={`/${store.slug}/${listing.slug}`} className="group block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
                <div className="aspect-[4/3] w-full bg-gray-100 relative">
                   {listing.listing_images?.[0]?.image_url ? (

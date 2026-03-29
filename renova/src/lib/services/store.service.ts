@@ -1,5 +1,5 @@
 import { supabaseAdmin } from '../db/supabase';
-import { StoreSchema, PublishStoreSchema } from '../validators/store';
+import { StoreSchema } from '../validators/store';
 
 export async function getStoreBySlug(slug: string) {
   const { data, error } = await supabaseAdmin
@@ -25,7 +25,7 @@ export async function getStoresByOwner(userId: string) {
   return data;
 }
 
-export async function createStore(userId: string, data: any) {
+export async function createStore(userId: string, data: Record<string, unknown>) {
   const validatedData = StoreSchema.parse(data);
   const { data: profile } = await supabaseAdmin.from('merchant_profiles').select('id').eq('user_id', userId).single();
   
@@ -45,7 +45,7 @@ export async function createStore(userId: string, data: any) {
   return newStore;
 }
 
-export async function updateStore(storeId: string, userId: string, data: any) {
+export async function updateStore(storeId: string, userId: string, data: Record<string, unknown>) {
     // Basic validation
     const validatedData = StoreSchema.partial().parse(data);
     

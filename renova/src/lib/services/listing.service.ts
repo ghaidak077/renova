@@ -1,5 +1,5 @@
 import { supabaseAdmin } from '../db/supabase';
-import { ListingSchema, PublishListingSchema } from '../validators/listing';
+import { ListingSchema } from '../validators/listing';
 import { slugify } from '../utils/slugify';
 
 export async function getPublicListingsByStore(storeId: string) {
@@ -29,7 +29,7 @@ export async function getListingBySlug(storeId: string, slug: string) {
   return data;
 }
 
-export async function createListing(storeId: string, userId: string, data: any) {
+export async function createListing(storeId: string, userId: string, data: Record<string, unknown>) {
   const validatedData = ListingSchema.parse(data);
   let slug = slugify(validatedData.title);
   
@@ -73,7 +73,7 @@ export async function createListing(storeId: string, userId: string, data: any) 
 
   // Insert Attributes
   if (validatedData.attributes && validatedData.attributes.length > 0) {
-      const attrInserts = validatedData.attributes.map((attr: any, index: number) => ({
+      const attrInserts = validatedData.attributes.map((attr: Record<string, string>, index: number) => ({
           listing_id: newListing.id,
           attribute_key: attr.key,
           attribute_label_ar: attr.label_ar,
